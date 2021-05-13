@@ -6,6 +6,8 @@ public class PlayerAim : MonoBehaviour
 {
     GameObject aimTransform;
     Vector2 aimDirection;
+    public PlayerController controller;
+    public GameObject AimSprite;
 
     void Awake()
     {
@@ -15,6 +17,14 @@ public class PlayerAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (controller.stuck)
+        {
+            AimSprite.SetActive(true);
+        }
+        else
+        {
+            AimSprite.SetActive(false);
+        }
         Vector3 mousePos = GetMouseWorldPosition();
         Vector2 pos = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
         aimDirection = pos.normalized;
