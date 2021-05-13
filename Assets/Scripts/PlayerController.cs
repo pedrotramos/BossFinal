@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             timer = 0f;
         }
 
-        if (timer > 0.5f)
+        if (timer > 1f)
         {
             stuck = true;
             rb.velocity = new Vector2(0f, 0f);
