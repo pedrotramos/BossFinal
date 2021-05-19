@@ -52,7 +52,7 @@ Bolinha -> Personagem controlado pelo jogador
 
 **Plataformas:** Web/Browser
 
-**Publico alvo:** Maiores de 8 anos buscando um jogo desafiador.
+**Publico alvo:** Pessoas de qualquer idade buscando um jogo desafiador.
 
 ## Referências e inspirações
 
