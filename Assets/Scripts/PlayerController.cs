@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    GameManager gm;
     public PlayerAim aim;
     public Rigidbody2D rb;
     public bool stuck = false;
@@ -16,11 +17,17 @@ public class PlayerController : MonoBehaviour
         Physics2D.gravity = new Vector2(0f, -9.8f);
         timer = 0f;
         contacts = new ContactPoint2D[1];
+        gm = GameManager.GetInstance();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gm.gameState != GameManager.GameState.GAME)
+        {
+            return;
+        }
+        gm.score = transform.position.y * 100;
         if (Input.GetKeyDown(KeyCode.Space) && stuck)
         {
             stuck = false;
@@ -49,6 +56,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    void Die()
+    {
+        transform.position = gm.lastCheckpoint;
+    }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -58,18 +70,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0f, 0f);
             Physics2D.gravity = new Vector2(0f, 0f);
         }
+
+        else if (col.collider.gameObject.tag == "Spike")
+        {
+            Die();
+        }
     }
-
-    // void OnCollisionStay2D(Collision2D col)
-    // {
-    //     if (col.collider.gameObject.tag == "Sticky")
-    //     {
-    //         stuck = true;
-    //     }
-    // }
-
-    // void OnCollisionExit2D(Collision2D col)
-    // {
-    //     stuck = false;
-    // }
 }
