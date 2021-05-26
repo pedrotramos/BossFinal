@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     GameManager gm;
     public PlayerAim aim;
     public Rigidbody2D rb;
-    public bool stuck = false;
+    public bool canJump = false;
     float timer;
     ContactPoint2D[] contacts;
 
@@ -27,31 +27,19 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        gm.score = transform.position.y * 100;
-        if (Input.GetKeyDown(KeyCode.Space) && stuck)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            stuck = false;
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
+        if (transform.position.y * 10 > gm.score) gm.score = transform.position.y * 10;
+        int collisionCount = rb.GetContacts(contacts);
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && collisionCount > 0 && aim.AimSprite.activeSelf)
+        {
+            canJump = false;
             Physics2D.gravity = new Vector2(0f, -9.8f);
             Vector2 direction = aim.GetAimDirection();
             float force = 400f;
             rb.AddForce(direction * force);
-        }
-
-        int collisionCount = rb.GetContacts(contacts);
-        if (collisionCount > 0)
-        {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            timer = 0f;
-        }
-
-        if (timer > 1f)
-        {
-            stuck = true;
-            rb.velocity = new Vector2(0f, 0f);
-            timer = 0f;
         }
     }
 
@@ -59,6 +47,11 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         transform.position = gm.lastCheckpoint;
+        gm.lives--;
+        if (gm.lives <= 0)
+        {
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
     }
 
 
@@ -66,9 +59,14 @@ public class PlayerController : MonoBehaviour
     {
         if (col.collider.gameObject.tag == "Sticky")
         {
-            stuck = true;
+            canJump = true;
             rb.velocity = new Vector2(0f, 0f);
             Physics2D.gravity = new Vector2(0f, 0f);
+        }
+
+        else if (col.collider.gameObject.tag == "Ice")
+        {
+            canJump = true;
         }
 
         else if (col.collider.gameObject.tag == "Spike")

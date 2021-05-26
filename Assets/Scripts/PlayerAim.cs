@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
+    GameManager gm;
     GameObject aimTransform;
     Vector2 aimDirection;
     public PlayerController controller;
     public GameObject AimSprite;
+    ContactPoint2D[] contacts;
 
     void Awake()
     {
         aimTransform = GameObject.FindGameObjectWithTag("Aim");
+        contacts = new ContactPoint2D[1];
+        gm = GameManager.GetInstance();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controller.stuck)
+        if (gm.gameState != GameManager.GameState.GAME)
+        {
+            return;
+        }
+        controller.GetComponent<Rigidbody2D>().GetContacts(contacts);
+        Vector2 normal_vec = contacts[0].normal;
+        float normal_angle = Vector2.Angle(aimDirection, normal_vec);
+        if (controller.canJump && normal_angle < 85f)
         {
             AimSprite.SetActive(true);
         }

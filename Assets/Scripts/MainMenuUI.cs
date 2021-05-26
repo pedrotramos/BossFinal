@@ -15,11 +15,12 @@ public class MainMenuUI : MonoBehaviour
 
     public void Play()
     {
+        gm.addHighscore = true;
         gm.lives = 3;
         gm.ChangeState(GameManager.GameState.GAME);
-        player.transform.position = new Vector3(0f, 0.6f, 0f);
+        player.transform.position = new Vector3(-8f, 0f, 0f);
         gm.lastCheckpoint = player.transform.position;
-        gm.score = player.transform.position.y * 100;
+        gm.score = player.transform.position.y * 10;
     }
 
     public void ChangeSettings()

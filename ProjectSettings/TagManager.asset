@@ -7,6 +7,7 @@ TagManager:
   - Sticky
   - Aim
   - Spike
+  - Ice
   layers:
   - Default
   - TransparentFX
