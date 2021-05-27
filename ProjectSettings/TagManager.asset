@@ -8,6 +8,7 @@ TagManager:
   - Aim
   - Spike
   - Ice
+  - MovingSticky
   layers:
   - Default
   - TransparentFX

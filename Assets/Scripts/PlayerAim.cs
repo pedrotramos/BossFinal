@@ -28,7 +28,7 @@ public class PlayerAim : MonoBehaviour
         controller.GetComponent<Rigidbody2D>().GetContacts(contacts);
         Vector2 normal_vec = contacts[0].normal;
         float normal_angle = Vector2.Angle(aimDirection, normal_vec);
-        if (controller.canJump && normal_angle < 85f)
+        if (controller.canJump && normal_angle < 87f)
         {
             AimSprite.SetActive(true);
         }

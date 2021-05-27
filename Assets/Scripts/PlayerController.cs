@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public PlayerAim aim;
     public Rigidbody2D rb;
     public bool canJump = false;
+    bool stuckToMoving = false;
+    GameObject parentObj;
+    Vector3 distToParent;
     float timer;
     ContactPoint2D[] contacts;
 
@@ -36,10 +39,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canJump && collisionCount > 0 && aim.AimSprite.activeSelf)
         {
             canJump = false;
+            stuckToMoving = false;
             Physics2D.gravity = new Vector2(0f, -9.8f);
             Vector2 direction = aim.GetAimDirection();
             float force = 400f;
             rb.AddForce(direction * force);
+        }
+        if (stuckToMoving)
+        {
+            Vector3 parentPos = parentObj.transform.position;
+            transform.position = parentPos - distToParent;
         }
     }
 
@@ -60,6 +69,16 @@ public class PlayerController : MonoBehaviour
         if (col.collider.gameObject.tag == "Sticky")
         {
             canJump = true;
+            rb.velocity = new Vector2(0f, 0f);
+            Physics2D.gravity = new Vector2(0f, 0f);
+        }
+
+        else if (col.collider.gameObject.tag == "MovingSticky")
+        {
+            canJump = true;
+            stuckToMoving = true;
+            parentObj = col.gameObject;
+            distToParent = parentObj.transform.position - transform.position;
             rb.velocity = new Vector2(0f, 0f);
             Physics2D.gravity = new Vector2(0f, 0f);
         }

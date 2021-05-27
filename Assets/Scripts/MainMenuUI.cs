@@ -17,6 +17,7 @@ public class MainMenuUI : MonoBehaviour
     {
         gm.addHighscore = true;
         gm.lives = 3;
+        gm.level = 1;
         gm.ChangeState(GameManager.GameState.GAME);
         player.transform.position = new Vector3(-8f, 0f, 0f);
         gm.lastCheckpoint = player.transform.position;

@@ -12,6 +12,7 @@ public class GameManager
     public GameState gameState { get; private set; }
     public float score;
     public int lives;
+    public int level;
     public Vector3 lastCheckpoint;
     public bool win;
     public bool addHighscore;
