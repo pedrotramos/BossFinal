@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         lives.text = $"Lives: {gm.lives}";
-        lives.text = $"Level: {gm.level}";
+        level.text = $"Level: {gm.level}";
         score.text = $"Score: {Mathf.Round(gm.score)}";
     }
 }
