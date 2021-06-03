@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     GameManager gm;
     public int checkpoint_level;
+    public AudioClip checkpointSFX;
 
     void Start()
     {
@@ -16,5 +17,6 @@ public class Checkpoint : MonoBehaviour
         gm.lastCheckpoint = transform.position;
         gm.level = checkpoint_level;
         gameObject.SetActive(false);
+        AudioManager.PlaySFX(checkpointSFX, 0.2f);
     }
 }

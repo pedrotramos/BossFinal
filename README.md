@@ -18,11 +18,23 @@ Ainda não está definida.
 
 ## Música / Trilha Sonora
 
-Nada definido.
+Música de Background -> https://freesound.org/people/josefpres/sounds/572944/
+
+Player chegando em um checkpoint -> https://freesound.org/people/ProjectsU012/sounds/341695/
+
+Player pulando -> https://freesound.org/people/sharesynth/sounds/344502/
+
+Player morre -> https://freesound.org/people/bankfraudd/sounds/145103/
+
+Player batendo na plataforma que gruda -> https://freesound.org/people/Pellepyb/sounds/431671/
+
+Player batendo na plataforma de gelo -> https://freesound.org/people/deleted_user_3656686/sounds/418194/
+
+Player quicando -> https://freesound.org/people/qubodup/sounds/331381/
 
 ## Interface
 
-A interface principal é simples e direta, contém apenas a pontuação no canto superior direito e a quantidade de vidas no canto superior esquerdo.
+A interface principal é simples e direta, contém apenas a pontuação no canto superior direito, a quantidade de vidas no canto superior esquerdo e o nível que o jogador está ao centro do canto superior.
 
 ## Controles
 
