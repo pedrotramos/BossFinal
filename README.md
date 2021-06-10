@@ -14,7 +14,11 @@ O jogo se passa em um cenário cheio de plataformas e exige que o jogador escolh
 
 ## Arte
 
-Ainda não está definida.
+Imagem de Fundo -> https://www.vecteezy.com/vector-art/641222-seamless-night-sky-backround-with-bright-stars-vector-flat-style-illustration
+
+Bolinha do jogador -> https://i.pinimg.com/originals/d2/6a/b6/d26ab6e45a7d77b5f41704c31403d40c.gif
+
+Demais ítens -> Ana Cristina Rodrigues Fellipelli
 
 ## Música / Trilha Sonora
 
